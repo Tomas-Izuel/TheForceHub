@@ -5,18 +5,17 @@ import { CharacterContext } from "../../../context/CharacterContext";
 import CharacterList from "../../CharacterList/CharacterList";
 //No encontre otra forma de agregar imagenes a la app que hacer un json con 10 imagenes, 9 de los primeros personajes y una default, ya que la api no provee imagenees de los personajes
 
+import { JellyTriangle } from "@uiball/loaders";
+
 const CharacterListContainer = () => {
   const { addCharacter, films } = useContext(CharacterContext);
-  const [searchCharacters, setSearchCharacters] = useState([]);
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const { cid = "" } = useParams();
 
-  const nextPage = () => {
-    setPage(page + 1);
-  };
-
-  const prevPage = () => {
-    setPage(page - 1);
+  const handleData = (data) => {
+    getAllInfo(data);
   };
 
   const buildCharacterObject = (nameHomeworld, filmsCharacter, c) => {
@@ -30,7 +29,7 @@ const CharacterListContainer = () => {
       homeworld: nameHomeworld,
       films: filmsCharacter,
     };
-    setSearchCharacters((prev) => [...prev, character]);
+    addCharacter(character);
   };
 
   const getAllInfo = async (character) => {
@@ -54,41 +53,48 @@ const CharacterListContainer = () => {
     buildCharacterObject(homeworld.name, filmsCharacter, character);
   };
 
+  const nextPage = () => {
+    setPage(page + 1);
+  };
+
+  const prevPage = () => {
+    setPage(page - 1);
+  };
+
   useEffect(() => {
-    setSearchCharacters([]);
     fetch(`https://swapi.dev/api/people/?search=${cid}&page=${page}`)
       .then((response) => response.json())
       .then((responseData) => {
+        setIsLoading(false);
+        setData(responseData);
         if (responseData.results.length === 1) {
           getAllInfo(responseData.results[0]);
-        } else {
-          responseData.results.forEach((element) => {
-            getAllInfo(element);
-          });
         }
       });
   }, [cid, page]);
+  console.log(data);
   return (
-    <div className="flex justify-start items-center py-24 text-white flex-col gap-5">
-      <h1 className="text-xl font-bold">Your search response</h1>
-      {searchCharacters.length > 1 ? (
-        <>
-          <p className=" text-center">
-            Your search yielded many results, choose the one you were looking
-            for.
-          </p>
-
-          <CharacterList characters={searchCharacters} short={true} />
-        </>
+    <div className="flex justify-start items-center py-28 text-white flex-col gap-5">
+      {isLoading ? (
+        <div className=" w-screen h-screen bg-slate-900 bg-opacity-30 z-20 absolute flex justify-center items-center">
+          {" "}
+          <JellyTriangle size={50} color="#FFFFFF" />
+        </div>
       ) : (
         <>
-          <CharacterList characters={searchCharacters} short={false} />
+          <h1 className="text-xl font-bold">Your search response</h1>
+          <CharacterList characters={data.results} handleData={handleData} />
+          <div>
+            {data.previous ? (
+              <button onClick={prevPage}>Prev page</button>
+            ) : (
+              <></>
+            )}
+
+            {data.next ? <button onClick={nextPage}>Next page</button> : <></>}
+          </div>
         </>
       )}
-      <div>
-        <button onClick={prevPage}>Prev page</button>
-        <button onClick={nextPage}>Next page</button>
-      </div>
     </div>
   );
 };

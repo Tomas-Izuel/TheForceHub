@@ -1,3 +1,4 @@
 body {
     background-image: url("./assets/bg.png");
+    overflow-x: hidden;
 }
