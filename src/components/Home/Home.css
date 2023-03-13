@@ -1,0 +1,46 @@
+.home {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../assets/bg-home.png');
+    background-size: cover;
+}
+
+.textLogo {
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.6));
+        transform: translatey(0px);
+    }
+
+    50% {
+        filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.2));
+        transform: translatey(-20px);
+    }
+
+    100% {
+        filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.6));
+        transform: translatey(0px);
+    }
+}
+
+@media (min-width: 768px) {
+    @keyframes float {
+        0% {
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.6));
+            transform: translatey(0px);
+        }
+
+        50% {
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.2));
+            transform: translatey(-10px);
+        }
+
+        100% {
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.6));
+            transform: translatey(0px);
+        }
+    }
+}
