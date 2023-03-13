@@ -84,7 +84,9 @@ const MySearchListContainer = () => {
           />
         </>
       ) : (
-        <p>No tienes ningun resultado que coincida con estos parametros</p>
+        <p className="text-center">
+          No tienes ningun resultado que coincida con estos parametros
+        </p>
       )}
       <NavLink to={"/"}>
         <button className=" bg-slate-300 text-black py-3 px-5 text-xl rounded-xl flex justify-center items-center gap-2 xl:hidden">

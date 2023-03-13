@@ -77,7 +77,7 @@ const CharacterListContainer = () => {
   return (
     <div className="flex justify-start items-center py-28 text-white flex-col gap-5">
       {isLoading ? (
-        <div className=" w-screen h-screen bg-slate-900 bg-opacity-30 z-20 absolute flex justify-center items-center">
+        <div className=" w-screen h-screen bg-slate-900 bg-opacity-30 z-20 absolute flex justify-center items-center top-0 left-0">
           {" "}
           <JellyTriangle size={50} color="#FFFFFF" />
         </div>
