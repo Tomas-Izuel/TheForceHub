@@ -1,35 +1,22 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
-const SelectFilter = () => {
+const SelectFilter = ({ handleFilterChange, options }) => {
   const [filter, setFilter] = useState("");
 
-  const handleChange = (event) => {
-    setFilter(event.target.value);
-  };
-
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth className="text-white">
-        <InputLabel id="demo-simple-select-label">Gender</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={filter}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={"male"}>Male</MenuItem>
-          <MenuItem value={"female"}>female</MenuItem>
-          <MenuItem value={"n/a"}>n/a</MenuItem>
-          <MenuItem value={"hermaphrodite"}>Hermaphrodite</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+    <select
+      name=""
+      id=""
+      placeholder="select a gender to filter"
+      className="text-black p-3 rounded-xl outline-none w-60"
+      onChange={(event) => handleFilterChange(event.target.value)}
+    >
+      {options.map((o) => (
+        <option value={o} key={o}>
+          {o}
+        </option>
+      ))}
+    </select>
   );
 };
 

@@ -63,6 +63,7 @@ const CharacterListContainer = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`https://swapi.dev/api/people/?search=${cid}&page=${page}`)
       .then((response) => response.json())
       .then((responseData) => {

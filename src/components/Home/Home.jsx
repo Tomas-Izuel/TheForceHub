@@ -1,13 +1,33 @@
+import { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+import { CharacterContext } from "../../context/CharacterContext";
 
 import "./Home.css";
 import logo from "../../assets/TheForceHubLogoWhite.png";
 
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
+import { JellyTriangle } from "@uiball/loaders";
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const { films } = useContext(CharacterContext);
+  useEffect(() => {
+    if (films.length > 0) {
+      setIsLoading(false);
+    }
+  }, [films]);
+  console.log(isLoading);
   return (
     <div className="home flex justify-center items-center md:items-start md:p-40 xl:p-60 flex-col">
+      {isLoading ? (
+        <div className=" w-screen h-screen bg-slate-900 bg-opacity-30 z-20 absolute flex justify-center items-center">
+          {" "}
+          <JellyTriangle size={50} color="#FFFFFF" />
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="flex flex-col gap-4">
         <img
           src={logo}
