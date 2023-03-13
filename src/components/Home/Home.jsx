@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <div className="home flex justify-center items-center md:items-start md:p-40 xl:p-60 flex-col">
       {isLoading ? (
-        <div className=" w-screen h-screen bg-slate-900 bg-opacity-30 z-20 absolute flex justify-center items-center">
+        <div className=" w-screen h-screen bg-slate-900 bg-opacity-30 z-20 absolute flex justify-center items-center top-0 left-0">
           {" "}
           <JellyTriangle size={50} color="#FFFFFF" />
         </div>
