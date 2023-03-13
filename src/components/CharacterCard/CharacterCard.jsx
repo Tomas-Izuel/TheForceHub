@@ -3,7 +3,7 @@ const CharacterCard = ({ character, handleData, preview }) => {
     "bg-white text-black rounded-xl overflow-hidden h-50 p-4 flex justify-start items-start flex-col w-80";
 
   const style =
-    "bg-white text-black rounded-xl overflow-hidden h-80 p-4 flex justify-start items-start flex-col w-80";
+    "bg-white text-black rounded-xl overflow-hidden h-96 p-4 flex justify-start items-start flex-col w-80";
   const handleClick = () => {
     handleData(character);
   };

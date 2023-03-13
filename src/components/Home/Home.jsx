@@ -14,11 +14,18 @@ const Home = () => {
           alt="TheForceHub logo"
           className="textLogo w-72 md:w-auto"
         />
-        <NavLink to={"/character"}>
-          <button className=" text-white border font-medium md:text-xl border-slate-300 p-3 rounded-xl hover:bg-slate-300 hover:text-black hover:shadow-md hover:shadow-slate-200 transition-all duration-500">
-            Characters list
-          </button>
-        </NavLink>
+        <div className="flex gap-5">
+          <NavLink to={"/character"}>
+            <button className=" text-white border font-medium md:text-xl border-slate-300 p-3 rounded-xl hover:bg-slate-300 hover:text-black hover:shadow-md hover:shadow-slate-200 transition-all duration-500">
+              Characters list
+            </button>
+          </NavLink>
+          <NavLink to={"/mysearchs"}>
+            <button className=" text-white border font-medium md:text-xl border-slate-300 p-3 rounded-xl hover:bg-slate-300 hover:text-black hover:shadow-md hover:shadow-slate-200 transition-all duration-500">
+              My searchs
+            </button>
+          </NavLink>
+        </div>
         <div className="flex justify-start items-center gap-2">
           <NavLink to="https://github.com/Tomas-Izuel">
             <AiFillGithub className="fill-white w-8 h-8 hover:fill-amber-300 transition-all duration-500" />
