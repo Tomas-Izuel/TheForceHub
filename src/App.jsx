@@ -5,6 +5,7 @@ import { CharacterProvider } from "./context/CharacterContext";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import CharacterListContainer from "./components/containers/CharacterListContainer/CharacterListContainer";
+import MySearchListContainer from "./components/containers/MySearchListContainer/MySearchListContainer";
 
 import "./App.css";
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/character/:cid" element={<CharacterListContainer />} />
           <Route path="/character" element={<CharacterListContainer />} />
+          <Route path="/mysearchs" element={<MySearchListContainer />} />
         </Routes>
       </BrowserRouter>
     </CharacterProvider>

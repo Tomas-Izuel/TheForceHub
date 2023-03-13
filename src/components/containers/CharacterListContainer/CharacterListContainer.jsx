@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { CharacterContext } from "../../../context/CharacterContext";
 import CharacterList from "../../CharacterList/CharacterList";
-//No encontre otra forma de agregar imagenes a la app que hacer un json con 10 imagenes, 9 de los primeros personajes y una default, ya que la api no provee imagenees de los personajes
 
 import { JellyTriangle } from "@uiball/loaders";
 
 const CharacterListContainer = () => {
+  const navigate = useNavigate();
   const { addCharacter, films } = useContext(CharacterContext);
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -16,6 +16,7 @@ const CharacterListContainer = () => {
 
   const handleData = (data) => {
     getAllInfo(data);
+    navigate("/mysearchs");
   };
 
   const buildCharacterObject = (nameHomeworld, filmsCharacter, c) => {
@@ -72,7 +73,6 @@ const CharacterListContainer = () => {
         }
       });
   }, [cid, page]);
-  console.log(data);
   return (
     <div className="flex justify-start items-center py-28 text-white flex-col gap-5">
       {isLoading ? (
@@ -83,15 +83,42 @@ const CharacterListContainer = () => {
       ) : (
         <>
           <h1 className="text-xl font-bold">Your search response</h1>
-          <CharacterList characters={data.results} handleData={handleData} />
-          <div>
+          {data.results.length !== 1 ? (
+            <p className="text-center px-2">
+              Your search yielded multiple results, click on the one you wish to
+              add.
+            </p>
+          ) : (
+            <p className="text-center px-2">Character added to mysearchs</p>
+          )}
+
+          <CharacterList
+            characters={data.results}
+            handleData={handleData}
+            preview={true}
+          />
+          <div className="flex gap-5">
             {data.previous ? (
-              <button onClick={prevPage}>Prev page</button>
+              <button
+                className=" bg-slate-300 text-black p-2 rounded-xl"
+                onClick={prevPage}
+              >
+                Prev page
+              </button>
             ) : (
               <></>
             )}
 
-            {data.next ? <button onClick={nextPage}>Next page</button> : <></>}
+            {data.next ? (
+              <button
+                className=" bg-slate-300 text-black p-2 rounded-xl"
+                onClick={nextPage}
+              >
+                Next page
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </>
       )}
