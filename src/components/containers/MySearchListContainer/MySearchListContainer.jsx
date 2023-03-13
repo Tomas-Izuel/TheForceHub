@@ -62,9 +62,6 @@ const MySearchListContainer = () => {
   useEffect(() => {
     handleCharacters();
   }, [genderFilter, filmsFilter, characters]);
-
-  console.log(genderFilter, filmsFilter);
-  console.log(charactersUI);
   return (
     <div className="py-24 text-white flex justify-center items-center flex-col gap-4">
       <h1 className="text-xl font-bold">My searchs</h1>

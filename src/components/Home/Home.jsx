@@ -17,7 +17,6 @@ const Home = () => {
       setIsLoading(false);
     }
   }, [films]);
-  console.log(isLoading);
   return (
     <div className="home flex justify-center items-center md:items-start md:p-40 xl:p-60 flex-col">
       {isLoading ? (

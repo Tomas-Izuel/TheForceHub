@@ -5,8 +5,6 @@ export const CharacterContext = createContext();
 export const CharacterProvider = ({ children }) => {
   const [characters, setCharacters] = useState([]);
   const [films, setFilms] = useState([]);
-  console.log(characters);
-  console.log(films);
   //Para evitar realizar muchas peticiones a la API, obtengo las 6 peliculas de Stars Wars haciendo un fetch cuando se entra a la web y asigno localmente el nombre al personaje buscado despues
   useEffect(() => {
     fetch("https://swapi.dev/api/films")
