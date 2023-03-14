@@ -33,6 +33,6 @@ To use and customize TheForceHub locally, you must:
 
 ### Build proyect
 
-To bould The Force Hub:
+To build The Force Hub:
 
 - npm run build
